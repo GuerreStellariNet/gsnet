@@ -1,10 +1,10 @@
 const axios = require('axios');
+require('dotenv').config();
 
 exports.handler = async (event, context) => {
   try {
     const { query } = JSON.parse(event.body).queryResult.parameters;
-
-    const googleAPIKey = 'AIzaSyDEONt3HX1G8Yun42srh6KBG2cwCs0_iPs';
+    const googleAPIKey = process.env.GOOGLE_API_KEY;
     const searchEngineID = '90d22e418744f4392';
     const response = await axios.get(`https://www.googleapis.com/customsearch/v1?key=${googleAPIKey}&cx=${searchEngineID}&q=${encodeURIComponent(query)}+site:guerrestellari.net`);
 
